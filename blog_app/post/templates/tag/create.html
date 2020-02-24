@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h3 class="mb-3">Create Tag</h3>
+            {% for key, value in errors.items %}
+            <div class="alert alert-danger" role="alert">
+              {{ key }}
+              {{ value }}
+            </div>
+            {% endfor %}
+            <form action="" method="post">
+                {% csrf_token %}
+                  <div class="form-group">
+                      <label for="name">Tag Name</label>
+                      <input type="text" class="form-control" name="name" id="name" placeholder="Tag Name">
+                  </div>
+                  <div class="form-group">
+                    <label for="posts">Posts</label>
+                    <select multiple class="form-control" id="posts" name="posts">
+                      {% for post in posts %}
+                      <option>{{ post.title }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Create Tag</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

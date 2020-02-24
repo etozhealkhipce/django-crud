@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-12 col-md-4 mt-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{ post.title }}</h5>
+                <p class="card-text">{{ post.body|truncatewords:10 }}</p>
+                <div class="d-flex">
+                    <a href="{{ post.get_absolute_url }}" class="btn btn-primary mr-auto">Load More</a>
+                    <a href="{% url 'post_edit' slug=post.slug %}" class="btn btn-success pb-0"><i class="material-icons">edit</i></a>
+                    <a href="{% url 'post_delete' slug=post.slug %}" class="btn btn-danger ml-2 pb-0"><i class="material-icons">delete</i></a>
+                </div>
+              </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
